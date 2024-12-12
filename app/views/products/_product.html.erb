@@ -1,22 +1,47 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Title:</strong>
-    <%= product.title %>
-  </p>
+<div class="min-h-screen py-12 sm:pt-20">
+  <div class="flex flex-col justify-center items-center md:flex-row md:items-start space-y-8 md:space-y-0 md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
+    <div class="w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded shadow-lg">
+      <div class="relative h-96">
+        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+          <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png?20220519031949", id: "displayed-image", class: "transform duration-500 ease-in-out hover:scale-110", style:"position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%" %>
+        </div>
+      </div>
+      <div class="relative flex border-t border-palette-lighter">
+        <div class="flex space-x-1 w-full overflow-auto border-t border-palette-lighter" style="scroll-behavior: smooth;">
+            <% 4.times do%>
+              <button class="relative w-40 h-32 flex-shrink-0 rounded-sm ">
+                <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+                      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png?20220519031949", class: "thumbnail" %>
+                </div>
+              </button>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col justify-between h-full w-full md:w-1/2 max-w-xs mx-auto space-y-4 min-h-128">
+      <div class=" font-primary">
+        <h1 class="leading-relaxed font-extrabold text-3xl text-palette-primary py-2 sm:py-4">
+          <%= product.title %>
+        </h1>
+        <p class="font-medium text-lg">
+          <%= product.description %>
+        </p>
+        <div class="text-xl text-palette-primary font-medium py-4 px-1">
+          $<span class="text-2xl"><%= product.price %>
+          </span>
+        </div>
+      </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p>
-    <strong>Seller:</strong>
-    <%= product.seller.email %>
-  </p>
-
+      <% if current_user&.has_purchased?(product) %>
+        <p>You already own this product!</p>
+      <% else %>
+        <div class="w-full">
+          <%= form_with model: product, url: buy_product_path(product), method: :post do %>
+            <%= submit_tag "Buy now", data: { turbo: false }, class: "pt-3 pb-2 bg-palette-primary text-white w-full mt-2 rounded-sm font-primary font-semibold text-xl flex justify-center items-baseline  hover:bg-palette-dar k cursor-pointer", "aria-label": "cart-button" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

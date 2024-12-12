@@ -1,20 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @product %>
-
-<% if current_user&.has_purchased?(@product) %>
-  <p>You already owned this product</p>
-<% else %>
-  <%= form_with model: @product, url: buy_product_path(@product), method: :post do %>
-    <%= submit_tag "Buy now", data: { turbo: false } %>
-  <% end %>
-<% end %>
-
 <div>
-  <%= link_to "Back to products", products_path %>
-
   <% if @product.seller == current_user %>
-    <%= link_to "Edit this product", edit_product_path(@product) %> |
-    <%= button_to "Destroy this product", @product, method: :delete %>
+    <%= link_to "Edit this product", edit_product_path(@product), class: "underline" %>
   <% end %>
 </div>
+
+<%= render @product %>

@@ -11,22 +11,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+    <div class="sm:col-span-6">
+      <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= form.text_field :title, label: false, class: "shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md" %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
+    <div class="sm:col-span-6">
+      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= form.text_area :description, class: "shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md" %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
-  </div>
+    <div class="sm:col-span-6">
+      <%= form.label :price, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1 flex rounded-md shadow-sm">
+        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">£</span>
 
-  <div>
-    <%= form.submit %>
+        <%= form.text_field :price, class: "flex-1 focus:ring-blue-500 focus:border-blue-500 block w-full min-w-0 rounded-none rounded-r-md border-gray-300" %>
+      </div>
+    </div>
+
+    <div class="sm:col-span-6">
+      <%= form.submit class: "button" %>
+    </div>
   </div>
 <% end %>

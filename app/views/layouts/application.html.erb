@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Minishop" %></title>
+    <title>Minishop</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <% if user_signed_in? %>
-      <%= current_user.email %>
-      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="mx-auto px-10 max-w-7xl">
+    <header class="border-b border-palette-lighter sticky top-0 z-20 bg-white">
+      <div class="flex items-center justify-between mx-auto max-w-6xl pb-2 pt-4 md:pt-6">
+        <a class=" cursor-pointer" href="/">
+          <h1 class="flex no-underline">
+            <span class="text-xl font-primary font-bold tracking-tight pt-1">Minishop</span>
+          </h1>
+        </a>
+        <div>
+          <% if user_signed_in? %>
+            <%= current_user.email %>
+            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %>
+            <%= link_to "Sign in", new_user_session_path %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="mx-auto max-w-6xl py-12 mx-auto">
+        <div class="">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>

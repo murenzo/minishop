@@ -1,16 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<% if user_signed_in? %>
+  <div class="text-right">
+    <%= link_to "Add new product", new_product_path, class: "button" %>
+  </div>
+<% end %>
 
-<% content_for :title, "Products" %>
-
-<h1>Products</h1>
-
-<div id="products">
+<div id="products" class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
   <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+    <%= link_to product, class:"h-120 w-72 overflow-hidden rounded-lg shadow-lg mx-auto border border-palette-lighter" do %>
+      <div class="h-48 border-b-2 border-palette-lighter relative">
+        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+          <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png?20220519031949", class: "transform duration-500 ease-in-out hover:scale-110"  %>
+        </div>
+      </div>
+      <div class="h-48 relative">
+        <div class="font-primary text-palette-primary text-2xl pt-4 px-4 font-semibold">
+          <%= product.title %>
+        </div>
+        <div class="text-palette-dark font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter  rounded-tl-sm triangle">
+          $<span class="text-lg"><%= product.price %></span>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
-
-<%= link_to "New product", new_product_path %>
