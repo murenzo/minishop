@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :purchases
-  resources :products
+  resources :products do
+    post "buy", on: :member
+  end
+  post "/webhook", to: "products#webhook"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
