@@ -25,9 +25,6 @@
         <h1 class="leading-relaxed font-extrabold text-3xl text-palette-primary py-2 sm:py-4">
           <%= product.title %>
         </h1>
-        <p class="font-medium text-lg">
-          <%= product.description %>
-        </p>
         <div class="text-xl text-palette-primary font-medium py-4 px-1">
           $<span class="text-2xl"><%= product.price %>
           </span>
@@ -45,5 +42,8 @@
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="font-medium text-lg m-20 px-8">
+    <%= product.description %>
   </div>
 </div>

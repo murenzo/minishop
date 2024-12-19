@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   has_many :buyers, through: :purchases, class_name: "User"
 
   has_many_attached :images
+  has_rich_text :description
 end

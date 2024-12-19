@@ -14,3 +14,4 @@
 .button {
   @apply p-2 bg-black text-white cursor-pointer;
 }
+@import 'actiontext.css';
