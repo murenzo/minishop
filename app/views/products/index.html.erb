@@ -9,7 +9,9 @@
     <%= link_to product, class:"h-120 w-72 overflow-hidden rounded-lg shadow-lg mx-auto border border-palette-lighter" do %>
       <div class="h-48 border-b-2 border-palette-lighter relative">
         <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-          <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png?20220519031949", class: "transform duration-500 ease-in-out hover:scale-110"  %>
+          <% if product.images.attached? %>
+            <%= image_tag product.images.first, class: "transform duration-500 ease-in-out hover:scale-110"  %>
+          <% end %>
         </div>
       </div>
       <div class="h-48 relative">
