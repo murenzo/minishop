@@ -60,4 +60,4 @@ gem "devise", "~> 4.9"
 
 gem "stripe", "~> 13.2"
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 3.2"
